@@ -1,0 +1,38 @@
+== Installation of dependent packages into virtual environment with PDM
+
+Folders `package_a` and `package_b` represent two individual Python packages from which we want to create a distribution down the line.
+
+Package B is dependent on Package A as it imports one module. Both packages also share one *namespace* `example_project`.
+
+=== Building with PDM
+
+. Change __WORKDIR__ to `python_pdm_example`
+. Create a new virtual environment: `python3 -m venv venv`
+. Patch files `package_a/.pdm.toml` and `package_a/.pdm.toml` to the right path of `python` executable in *venv* created in step 1.
+. Build Package A `pipx run pdm build -p ./package_a`
+. Build Package B `pipx run pdm build -p ./package_b`
+. Install Package A `pipx run pdm install -p ./package_a`
+. Install Package B `pipx run pdm install -p ./package_b`
+
+Installation of Package A will happen without issue. During installation of package B, there will be an error:
+```
+[CandidateNotFound]: Unable to find candidates for does-not-exist-on-pypi-project-a. There may exist some issues with the package index or network condition.
+Add '-v' to see the detailed traceback
+```
+
+```
+pdm.exceptions.CandidateNotFound: Unable to find candidates for does-not-exist-on-pypi-project-a. There may exist some issues with the package index or network condition.
+```
+
+There is clearly a problem with dependency resolution.
+
+However, were we install the Package B as a wheel using the `pip` command, the dependency resolution issue will disappear:
+
+. Activate the virtual environment in shell `source venv/bin/activate`
+. Install the Package B `pip install package_b/dist/does_not_exist_on_pypi_project_b-0.1.1-py3-none-any.whl`
+
+Now it is possible to run both `project_a_cli` and `project_b_cli` scripts.
+
+== Interest
+
+What I am interested in is if I can somehow install the Package B in editable mode via `pipx run pdm install -p ./package_b` the same way as Package A. So both will be just links from the virtual environment to the code.

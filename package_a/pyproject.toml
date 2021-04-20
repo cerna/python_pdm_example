@@ -1,0 +1,36 @@
+[project]
+name = "does_not_exist_on_pypi_project_a"
+version = "0.1.1"
+description = "Project A test case"
+requires-python = ">=3.7"
+keywords = ["test"]
+authors = [
+  {email = "john@doe.com"},
+  {name = "John Doe"}
+]
+maintainers = [
+  {name = "John Doe", email = "john@doe.com"}
+]
+
+dependencies = []
+
+dynamic = ["classifiers"]
+
+[project.urls]
+homepage = "example.com"
+documentation = "readthedocs.org"
+repository = "github.com"
+
+[project.scripts]
+project_a_cli = "example_project.application_a.project_a:cli"
+
+[tool]
+[tool.pdm]
+includes = [
+    "src/example_project",
+]
+package-dir = "src"
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
