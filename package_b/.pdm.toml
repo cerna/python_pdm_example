@@ -1,3 +1,0 @@
-use_venv = true
-[python]
-path = "<base_path>/venv/bin/python"

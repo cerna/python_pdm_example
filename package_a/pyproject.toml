@@ -14,12 +14,12 @@ maintainers = [
 
 dependencies = []
 
-dynamic = ["classifiers"]
+dynamic = []
 
 [project.urls]
-homepage = "example.com"
-documentation = "readthedocs.org"
-repository = "github.com"
+homepage = "https://example.com"
+documentation = "https://readthedocs.org"
+repository = "https://github.com"
 
 [project.scripts]
 project_a_cli = "example_project.application_a.project_a:cli"
@@ -29,8 +29,10 @@ project_a_cli = "example_project.application_a.project_a:cli"
 includes = [
     "src/example_project",
 ]
+source-includes = ["CMakeLists.txt", "src/example_project/application_a/pytestmodule.c", "build.py"]
 package-dir = "src"
+build = "build.py"
 
 [build-system]
-requires = ["pdm-pep517"]
+requires = ["pdm-pep517", "setuptools", "cmake_build_extension", "cmake", "ninja"]
 build-backend = "pdm.pep517.api"

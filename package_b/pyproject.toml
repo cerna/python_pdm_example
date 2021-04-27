@@ -31,8 +31,10 @@ project_b_cli = "example_project.application_b.project_b:cli"
 includes = [
     "src/example_project",
 ]
+source-includes = ["example_project/application_b/pytestmodule.c", "build.py"]
 package-dir = "src"
+build = "build.py"
 
 [build-system]
-requires = ["pdm-pep517"]
+requires = ["pdm-pep517", "setuptools"]
 build-backend = "pdm.pep517.api"
