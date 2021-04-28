@@ -28,13 +28,13 @@ project_b_cli = "example_project.application_b.project_b:cli"
 
 [tool]
 [tool.pdm]
-includes = [
-    "src/example_project",
-]
-source-includes = ["example_project/application_b/pytestmodule.c", "build.py"]
-package-dir = "src"
+includes = ["src/example_project"]
+source-includes = ["src/**/*.c"]
+#source-includes = ["**/*.c"]
+#source-includes = ["src/example_project/application_b/pytestmodule.c"]
+#source-includes = ["example_project/application_b/pytestmodule.c"]
 build = "build.py"
 
 [build-system]
-requires = ["pdm-pep517", "setuptools"]
+requires = ["git+https://github.com/cerna/pdm-pep517", "setuptools"]
 build-backend = "pdm.pep517.api"

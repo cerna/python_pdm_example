@@ -7,7 +7,8 @@ ext_modules = [CMakeExtension(name='pytestmodule',
                               install_prefix="example_project/application_a",
                               source_dir=str(Path(".").absolute()),
                               cmake_configure_options=[
-                                  f"-DPython3_ROOT_DIR={Path(sys.prefix)}",
+                                  "-DCMAKE_TOOLCHAIN_FILE=CrossToolchain.cmake",
+                                  # f"-DPython3_ROOT_DIR={Path(sys.prefix)}",
                                   "-DBUILD_SHARED_LIBS:BOOL=OFF",
                               ])]
 

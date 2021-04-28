@@ -29,7 +29,7 @@ project_a_cli = "example_project.application_a.project_a:cli"
 includes = [
     "src/example_project",
 ]
-source-includes = ["CMakeLists.txt", "src/example_project/application_a/pytestmodule.c", "build.py"]
+source-includes = ["CMakeLists.txt", "src/**/*.c"]
 package-dir = "src"
 build = "build.py"
 

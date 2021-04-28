@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18.0)
 project(does_not_exist_on_pypi_project_a)
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package(Python3 COMPONENTS Development.Module REQUIRED)
 
 include(GNUInstallDirs)
 
